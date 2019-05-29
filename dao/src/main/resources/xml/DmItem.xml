@@ -32,6 +32,21 @@
         WHERE i.cinemaId=c.id AND i.itemType1Id = #{itemTypeId} LIMIT #{limit}
     </select>
 
+    <!--c3轮播图-->
+    <select id="querySlideShowPic" resultType="VoItem">
+        SELECT d.id,d.itemName,d.minPrice FROM dm_item d,dm_item i
+        WHERE i.itemTypeId=#{itemTypeId}
+    </select>
+
+
+    <!--C4猜你喜欢-->
+    <select id="queryItemLike" resultType="VoItems">
+        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId,c.areaName,c.address
+        FROM  dm_item i,dm_cinema c
+        WHERE i.ageGroup = #{ageGroup} AND i.itemType1Id = #{itemTypeId} LIMIT #{limit}
+    </select>
+
+
     <!--C6热门排行-->
     <select id="queryItemHot" resultType="VoItems">
         SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId,c.areaName,c.address
