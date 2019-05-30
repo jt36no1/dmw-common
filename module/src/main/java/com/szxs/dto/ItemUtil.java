@@ -3,12 +3,21 @@ package com.szxs.dto;
 //接收前端参数
 public class ItemUtil {
     private  Integer id;
+    private  Integer parent;
     private  Integer itemTypeId;
     private  Integer year;
     private  Integer month;
     private  Integer limit;
     private  Integer areaId;
     private  Integer ageGroup;
+
+    public Integer getParent() {
+        return parent;
+    }
+
+    public void setParent(Integer parent) {
+        this.parent = parent;
+    }
 
     public Integer getId() {
         return id;

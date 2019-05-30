@@ -20,6 +20,32 @@
         LIMIT 4
     </select>
 
+
+    <!--B6.	剧场类型推荐电影-->
+    <resultMap id="queryFloorItemsMap" type="VoFloorItems">
+        <result property="floor" column="key" />
+        <result property="itemTypeName" column="itemName" />
+        <result property="itemTypeId" column="tid" />
+        <collection property="items" ofType="VoItems">
+            <result property="id" column="iid" />
+            <result property="itemName" column="itemName" />
+            <result property="startDate" column="startDate" />
+            <result property="endDate" column="endDate" />
+            <result property="minPrice" column="minPrice" />
+            <result property="areaId" column="areaId" />
+            <result property="areaName" column="areaName" />
+            <result property="address" column="address" />
+        </collection>
+    </resultMap>
+    <select id="queryFloorItems" resultMap="queryFloorItemsMap">
+        SELECT t.key,t.aliasName,t.id tid,
+        i.id iid,i.itemName,i.startTime "startDate",i.endTime "endDate",i.minPrice,
+        c. areaId,c. areaName,c.address
+        FROM `dm_item_type` t,`dm_item` i,`dm_cinema` c
+        WHERE i.itemType1Id = t.id AND c.id = i.cinemaId
+        limit 7
+    </select>
+
 <!--查询一级分类-->
     <select id="queryTransverse" resultType="VoTransverse">
         SELECT * FROM dm_item_type

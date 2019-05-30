@@ -31,6 +31,11 @@
         FROM  dm_item i,dm_cinema c
         WHERE i.cinemaId=c.id AND i.itemType1Id = #{itemTypeId} LIMIT #{limit}
     </select>
+    <!--C3轮播图-->
+    <select id="querySlideShowPic" resultType="VoItem">
+        SELECT id,itemName,minPrice FROM dm_item
+        WHERE itemType1Id=#{itemTypeId}
+    </select>
     <!--C7.根据月份查询剧场-->
     <select id="queryItemByMonth" resultType="DmItem">
         SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId 'dmCinema.areaId',c.areaName 'dmCinema.areaName',

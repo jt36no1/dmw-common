@@ -1,9 +1,6 @@
 package com.szxs.mapper;
 
-import com.szxs.dto.VoItem;
-import com.szxs.dto.VoItemDetail;
-import com.szxs.dto.VoItemType;
-import com.szxs.dto.VoItems;
+import com.szxs.dto.*;
 
 import com.szxs.entity.DmItem;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,6 +22,11 @@ public interface DmItemMapper {
      * 即将开售
      */
     List<VoItem> queryToSaleItem();
+
+    /**B6
+     * 剧场类型推荐电影
+     */
+    List<VoFloorItems> queryFloorItems();
     /**B7
      * 热门演出推荐排行
      * @param itemTypeId 剧场类型id
