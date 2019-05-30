@@ -5,9 +5,11 @@ import com.szxs.dto.VoItemDetail;
 import com.szxs.dto.VoItemType;
 import com.szxs.dto.VoItems;
 
+import com.szxs.entity.DmItem;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 @Mapper
 public interface DmItemMapper {
@@ -15,7 +17,6 @@ public interface DmItemMapper {
      * 查询轮播图
      */
      List<VoItem> queryBanner();
-
     /**B4
      * 今日推荐
      */
@@ -24,30 +25,25 @@ public interface DmItemMapper {
      * 即将开售
      */
     List<VoItem> queryToSaleItem();
-
     /**B7
      * 热门演出推荐排行
      * @param itemTypeId 剧场类型id
      *
      */
     List<VoItem> queryHotItems(@Param("itemTypeId") Integer itemTypeId);
-
     /**C1
      *音乐会专区
      * @param ageGroup    根据dm_item表的ageGroup列查询
      * @param limit    个数
      */
-    List<VoItems> queryItemByAge(@Param("ageGroup") Integer ageGroup,@Param("limit") Integer limit);
-
-
+    List<DmItem> queryItemByAge(@Param("ageGroup") Integer ageGroup, @Param("limit") Integer limit);
     /**C2
      * 2.精彩聚集(2)
      * @param itemTypeId 根据dm_item表的itemType1Id列查询
      * @param limit  个数
      *
      */
-    List<VoItems> queryAdvertising(@Param("itemTypeId") Integer itemTypeId,@Param("limit") Integer limit);
-
+    List<DmItem> queryAdvertising(@Param("itemTypeId") Integer itemTypeId, @Param("limit") Integer limit);
     /**C3
      * 轮播图
      * @param itemTypeId 根据dm_item表的itemType1Id列查询
@@ -80,17 +76,17 @@ public interface DmItemMapper {
      * @param areaId    dm_cinema表的区域id
      *
      */
-    List<VoItems> queryItemHot(@Param("itemTypeId") Integer itemTypeId,@Param("limit") Integer limit,@Param("areaId")Integer areaId);
+    List<DmItem> queryItemHot(@Param("itemTypeId") Integer itemTypeId,@Param("limit") Integer limit,@Param("areaId")Integer areaId);
 
 
     /**C7
-     * 7.根据月份查询剧场
-     * @param itemTypeId    根据dm_item表的itemType1Id列查询
-     * @param month 月份
-     * @param year  年份
-     *
+     * 根据dm_item表的itemType1Id列查询
+     * @param itemTypeId
+     * @param start 查询时间段起始点
+     * @param end   查询时间段结束点
+     * @return
      */
-    List<VoItems> queryItemByMonth(@Param("itemTypeId") Integer itemTypeId,@Param("month") Integer month,@Param("year")Integer year);
+    List<DmItem> queryItemByMonth(@Param("itemTypeId") Integer itemTypeId, @Param("start") Date start, @Param("end")Date end);
 
 
     /**E1

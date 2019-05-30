@@ -29,6 +29,9 @@ public class DmItemTypeFeignClientFallback implements DmItemTypeFeignClient {
         return null;
     }
 
+    public List<VoItems> queryItemByMonth(Integer itemTypeId, String start, String end) {
+        return null;
+    }
 
     public List<VoFloorItems> queryFloorItems() {
         return null;
@@ -62,10 +65,6 @@ public class DmItemTypeFeignClientFallback implements DmItemTypeFeignClient {
         return null;
     }
 
-    public List<VoItems> queryItemByMonth(Integer itemTypeId, Integer month, Integer year) {
-        return null;
-    }
-
     public List<VoCity> queryCityList() throws Exception {
         return null;
     }
@@ -77,7 +76,6 @@ public class DmItemTypeFeignClientFallback implements DmItemTypeFeignClient {
     public VoEsEntity queryItemRows(DmElasticSearchRequestParm desr) throws Exception {
         return null;
     }
-
 
     public List<VoItem> queryVoItem(Integer itemTypeId, Integer limit) throws Exception {
         return null;

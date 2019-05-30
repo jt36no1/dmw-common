@@ -10,7 +10,7 @@ public class VoItem implements Serializable {
     private Integer id;
     private String itemName;
     private double minPrice;
-    private String imgUrl="http://172.16.7.111:8888/default_normal.jpg";;
+    private String imgUrl="http://192.168.83.99:8888/default_normal.jpg";;
 
     public Integer getId() {
         return id;

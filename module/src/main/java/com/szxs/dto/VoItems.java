@@ -16,7 +16,7 @@ public class VoItems implements Serializable {
     private Integer areaId;     //dm_cinema表
     private String areaName;    //dm_cinema表
     private String address;     //dm_cinema表
-    private String imgUrl;      //
+    private String imgUrl="http://192.168.83.99:8888/default_normal.jpg";
 
     public Integer getId() {
         return id;

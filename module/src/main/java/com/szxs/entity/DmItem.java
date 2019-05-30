@@ -32,6 +32,15 @@ public class DmItem implements Serializable {
   private Date createdTime;
   private Date updatedTime;
   private DmImage dmImage;
+  private  DmCinema dmCinema;
+
+  public DmCinema getDmCinema() {
+    return dmCinema;
+  }
+
+  public void setDmCinema(DmCinema dmCinema) {
+    this.dmCinema = dmCinema;
+  }
 
   public Integer getId() {
     return id;

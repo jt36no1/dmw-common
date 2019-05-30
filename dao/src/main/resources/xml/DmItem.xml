@@ -8,11 +8,9 @@
     <select id="queryBanner" resultType="VoItem">
         SELECT d.id,d.itemName,d.minPrice FROM dm_item d
     </select>
-
-
     <!--今日推荐-->
     <select id="queryTodayRecommend" resultType="VoItem">
-        SELECT d.id,d.itemName,d.minPrice FROM dm_item d
+        SELECT d.id,d.itemName,d.minPrice FROM dm_item d limit 5
     </select>
     <!--B7热门演出推荐排行-->
     <select id="queryHotItems" resultType="VoItem">
@@ -20,21 +18,29 @@
         WHERE d.itemType1Id = #{itemTypeId}
     </select>
     <!--C1音乐会专区-->
-    <select id="queryItemByAge" resultType="VoItems">
-        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId,c.areaName,c.address
+    <select id="queryItemByAge" resultType="DmItem">
+        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId 'dmCinema.areaId',
+        c.areaName 'dmCinema.areaName',c.address 'dmCinema.address'
         FROM  dm_item i,dm_cinema c
         WHERE i.cinemaId=c.id AND i.ageGroup = #{ageGroup} LIMIT #{limit}
     </select>
-    <!--C2精彩聚集-->
-    <select id="queryAdvertising" resultType="VoItems">
-        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId,c.areaName,c.address
+    <!--C2精彩聚集(2)-->
+    <select id="queryAdvertising" resultType="DmItem">
+        SELECT i.id,i.itemName,i.endTime,i.startTime ,i.minPrice,c.areaId 'dmCinema.areaId',c.areaName 'dmCinema.areaName',
+        c.address 'dmCinema.address'
         FROM  dm_item i,dm_cinema c
         WHERE i.cinemaId=c.id AND i.itemType1Id = #{itemTypeId} LIMIT #{limit}
     </select>
-
+    <!--C7.根据月份查询剧场-->
+    <select id="queryItemByMonth" resultType="DmItem">
+        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId 'dmCinema.areaId',c.areaName 'dmCinema.areaName',
+         c.address 'dmCinema.address'
+        FROM  dm_item i,dm_cinema c WHERE i.cinemaId=c.id AND  i.itemType1Id = #{itemTypeId} AND i.startTime &gt; #{start} AND i.endTime &lt; #{end}
+    </select>
     <!--C6热门排行-->
-    <select id="queryItemHot" resultType="VoItems">
-        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId,c.areaName,c.address
+    <select id="queryItemHot" resultType="DmItem">
+        SELECT i.id,i.itemName,i.endTime,i.startTime,i.minPrice,c.areaId 'dmCinema.areaId',c.areaName 'dmCinema.areaName',
+         c.address 'dmCinema.address'
         FROM  dm_item i,dm_cinema c
         WHERE i.cinemaId=c.id AND c.areaId = #{areaId} LIMIT #{limit}
     </select>

@@ -13,51 +13,39 @@ import java.util.List;
 
 @FeignClient(name="dm-item-provider",fallback = DmItemTypeFeignClientFallback.class)
 public interface DmItemTypeFeignClient {
-
     /**B1
      * 查询所有商品分类
      *
      */
     @RequestMapping("/queryAllType")
     public List<VoItemType> queryAllType();
-
-
     /**B2
      * 查询一级分类
      *
      */
     @RequestMapping(value = "/queryTransverse")
      List<VoTransverse> queryVoTransverse();
-
-
     /**B3
      * 轮播图
      */
     @RequestMapping(value = "/queryBanner")
      List<VoItem> queryBanner();
-
-
     /**B4
      * 今日推荐
      */
     @RequestMapping(value = "/queryTodayRecommend")
      List<VoItem> queryTodayRecommend();
-
     /**B5
      * 即将开售----待定
      */
     @RequestMapping(value = "/queryToSaleItem",method = RequestMethod.POST)
     List<VoItem> queryToSaleItem();
-
-
     /**B6
      * 剧场类型推荐电影（1F/2F。。。）
      *
      */
     @RequestMapping(value = "/queryFloorItems",method = RequestMethod.POST)
     List<VoFloorItems> queryFloorItems();
-
-
     /**B7
      * 热门演出推荐排行
      * @param itemTypeId 剧场类型id
@@ -65,8 +53,6 @@ public interface DmItemTypeFeignClient {
      */
     @RequestMapping(value = "/queryHotItems",method = RequestMethod.POST)
     List<VoItem> queryHotItems(@RequestParam("itemTypeId")Integer itemTypeId);
-
-
     /**C1
      *音乐会专区
      * @param ageGroup    根据dm_item表的ageGroup列查询
@@ -75,8 +61,6 @@ public interface DmItemTypeFeignClient {
     @RequestMapping(value = "/queryItemByAge")
     List<VoItems> queryItemByAge(@RequestParam("ageGroup") Integer ageGroup,
                                  @RequestParam("limit") Integer limit);
-
-
     /**C2
      * 2.精彩聚集(2)
      * @param itemTypeId 根据dm_item表的itemType1Id列查询
@@ -128,17 +112,16 @@ public interface DmItemTypeFeignClient {
                                @RequestParam("areaId")Integer areaId);
 
     /**C7
-     * 7.根据月份查询剧场
-     * @param itemTypeId    根据dm_item表的itemType1Id列查询
-     * @param month 月份
-     * @param year  年份
-     *
+     * 根据dm_item表的itemType1Id列查询
+     * @param itemTypeId
+     * @param start
+     * @param end
+     * @return
      */
     @RequestMapping(value = "/queryItemByMonth",method = RequestMethod.POST)
     List<VoItems> queryItemByMonth(@RequestParam("itemTypeId")Integer itemTypeId,
-                                   @RequestParam("month")Integer month,
-                                   @RequestParam("year")Integer year);
-
+                                   @RequestParam("start")String start,
+                                   @RequestParam("end")String end);
 
     /**
      * D1.查询城市
